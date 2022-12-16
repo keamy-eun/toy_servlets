@@ -60,11 +60,11 @@ public class SurveyListServlet extends HttpServlet{
                 pw.println("        <input");
                 pw.println("        type='radio'");
                 pw.println("        class='form-check-input'");
-                pw.println("        name='radio02'");
+                pw.println("        name='radio0"+i+"'");
                 pw.println("        id='default-radio'");
-                pw.println("        value='2-1'");
+                pw.println("        value='"+i+"-"+j+"'");
                 pw.println("        />");
-                pw.println("        <label for='radio02' class='form-check-label'");
+                pw.println("        <label for='radio0"+i+"' class='form-check-label'");
                 pw.println("        >"+answersList.get(j)+"</label");
                 pw.println("        >");
                 pw.println("    </div>");
