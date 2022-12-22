@@ -19,7 +19,6 @@ public class SurveyListServlet extends HttpServlet{
         DataInfo dataInfo = new DataInfo();
         HashMap<String, Object> bundlesData = dataInfo.getBundlesData();
 
-
         PrintWriter pw = response.getWriter();
         
         pw.println("");
