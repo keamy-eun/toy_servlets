@@ -20,10 +20,10 @@
     <% ArrayList<HashMap> bundle_list = (ArrayList<HashMap>)request.getAttribute("questions_example_list"); %>
       
       <% for(int i=1; i<6; i++){ %>
-      <a href="/poll/DetailServlets?ORDER=<%= i%>">Q<%= i%></a> /
+      <a href="/poll/DetailServlets?QUESTIONS_UID=Q<%= i%>">Q<%= i%></a> /
       <% } %>
       
-      <% String order = request.getParameter("ORDER"); %>
+      <% String order = request.getParameter("QUESTIONS_UID"); %>
 
       <% int intOrder = 0; 
         if(order==null) { %>

@@ -17,18 +17,19 @@ language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
   </head>
   <body>
     <%
-      HashMap<String,Object> question = (HashMap<String,Object>)request.getAttribute("question");
+      HashMap<String,Object> question_list = (HashMap<String,Object>)request.getAttribute("question_list");
+      ArrayList<String> example_list = (ArrayList<String>) request.getAttribute("example_list");
     %>
-    <a href="/polls/PollServlet_us?QUESTIONS_UID=1">Q1</a> /
-    <a href="/polls/PollServlet_us?QUESTIONS_UID=2">Q2</a> /
-    <a href="/polls/PollServlet_us?QUESTIONS_UID=3">Q3</a> /
-    <a href="/polls/PollServlet_us?QUESTIONS_UID=4">Q4</a> /
-    <a href="/polls/PollServlet_us?QUESTIONS_UID=5">Q5</a>
+    <% for(int i=1; i<6; i++){ %>
+      <a href="/polls/PollServlet_us?QUESTIONS_UID=Q<%= i%>">Q<%= i%></a> /
+      <% } %>
     <div>
-      <%= question.get("ORDERS") %>. <%= question.get("QUESTIONS") %>
-      2. 주문시 직원은 고객님께 친절하였습니까?
+      <%= question_list.get("ORDERS") %>. <%= question_list.get("QUESTIONS") %>
     </div>
-    <div>(1) Never (2) nope (3) normal</div>
+    <% for(int i=0; i<example_list.size(); i++){%>
+      <div><%= "("+(i+1)+") "+example_list.get(i) %></div>
+      <% }%>
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
