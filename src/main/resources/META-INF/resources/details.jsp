@@ -17,26 +17,24 @@
     <link rel="stylesheet" href="./css/commons.css" />
   </head>
   <body>
-    <%! int cnt = 1; %>
     <% ArrayList<HashMap> bundle_list = (ArrayList<HashMap>)request.getAttribute("questions_example_list"); %>
+      
+      <% for(int i=1; i<6; i++){ %>
+      <a href="/poll/DetailServlets?ORDER=<%= i%>">Q<%= i%></a> /
+      <% } %>
+      
       <% String order = request.getParameter("ORDER"); %>
-      <div>order = <%= order %></div>
-      <a href="/poll/DetailServlets?ORDER=<%= cnt++%>">awef</a>
-      <button class="btn btn-outline-primary" id="1" onclick="location.href='/poll/DetailServlets?ORDER='+<%= cnt--%>">Next</button>
-      <a href="/poll/DetailServlets?ORDER=<%= cnt++%>">124</a>
-      <% int intOrder = 0; %>
-      <% if(order==null) { %>
+
+      <% int intOrder = 0; 
+        if(order==null) { %>
         <div><%= bundle_list.get(0).get("ORDERS")+". "+bundle_list.get(0).get("QUESTIONS")%></div>
         <div><%= bundle_list.get(0).get("EXAMPLE")%></div>
-        <% } else { %>
-        <% intOrder = Integer.parseInt(order); %>
-          <div><%= bundle_list.get(intOrder).get("ORDERS")+". "+bundle_list.get(intOrder).get("QUESTIONS")%></div>
-        <div><%= bundle_list.get(intOrder).get("EXAMPLE")%></div>
+        <% } else { 
+          intOrder = Integer.parseInt(order); %>
+          <div><%= bundle_list.get(intOrder-1).get("ORDERS")+". "+bundle_list.get(intOrder-1).get("QUESTIONS")%></div>
+        <div><%= bundle_list.get(intOrder-1).get("EXAMPLE")%></div>
           <% } %>
-          
-        <div>cnt = <%= cnt %></div>
         
-
           
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
