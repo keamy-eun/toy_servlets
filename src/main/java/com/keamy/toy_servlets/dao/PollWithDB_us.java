@@ -31,7 +31,6 @@ public class PollWithDB_us {
         ResultSet resultSet2 = statement.executeQuery(query2);
         while(resultSet2.next()){
             example_list.add(resultSet2.getString("EXAMPLE"));
-            System.out.println(resultSet2.getString("EXAMPLE"));
         }
         bundle_list.add(example_list);
 

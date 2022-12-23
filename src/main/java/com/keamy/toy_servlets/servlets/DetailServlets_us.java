@@ -17,9 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = "/polls/PollServlet_us")
 public class DetailServlets_us extends HttpServlet{
-    @Override  //request는 client가 보내온것
+    @Override 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // input type
         String questions_Uid = request.getParameter("QUESTIONS_UID");
         
         // biz with DB and Class
@@ -27,21 +26,19 @@ public class DetailServlets_us extends HttpServlet{
         HashMap<String, Object> question_list = null;
         ArrayList<String> example_list = null;
         try {
+        //답항,문항을 담은 ArrayList
         ArrayList<Object> bundle_list = pollWithDB.getQuestion(questions_Uid);
 
+        //문항
         question_list = (HashMap<String, Object>) bundle_list.get(0);
-            System.out.println(question_list.get("QUESTIONS_UID"));
-            System.out.println(question_list.get("QUESTIONS"));
-            System.out.println(question_list.get("ORDERS"));
 
+        //답항
         example_list = (ArrayList<String>) bundle_list.get(1);
-        for(int i=0; i<example_list.size(); i++){
-            System.out.println(example_list.get(i));
-        }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // output with html
+        // 답항,문항을 jsp로 넘김
         request.setAttribute("question_list", question_list);
         request.setAttribute("example_list", example_list);
         
